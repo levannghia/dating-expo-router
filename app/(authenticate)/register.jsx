@@ -9,6 +9,7 @@ const register = () => {
     const router = useRouter();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff', alignItems: 'center' }}>
@@ -41,7 +42,7 @@ const register = () => {
                             color: "#f9629f"
                         }}
                     >
-                        Login in to your account
+                        Register to your account
                     </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 20, }}>
@@ -55,6 +56,27 @@ const register = () => {
                     />
                 </View>
                 <View style={{ marginTop: 20 }}>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 5,
+                            paddingVertical: 5,
+                            marginTop: 30,
+                            borderRadius: 5,
+                            backgroundColor: "#FFC0CB"
+                        }}
+                    >
+                        <MaterialIcons style={{ marginLeft: 8 }} name="email" size={24} color="white" />
+                        <TextInput
+                            value={name}
+                            onChangeText={setName}
+                            placeholder='Enter your name'
+                            placeholderTextColor={"white"}
+                            style={{ color: "white", marginVertical: 10, width: "80%", maxWidth: 300 }}
+                        />
+                    </View>
+
                     <View
                         style={{
                             flexDirection: 'row',
@@ -121,8 +143,8 @@ const register = () => {
                             <Text style={{ fontWeight: 'bold', fontSize: 16, color: 'white', textAlign: 'center' }}>Login</Text>
                         </Pressable>
 
-                        <Pressable onPress={() => router.replace("/register")} style={{ marginTop: 12 }}>
-                            <Text style={{ textAlign: 'center', color: 'gray' }}>Don't have an account? Sign Up</Text>
+                        <Pressable onPress={() => router.replace("/login")} style={{ marginTop: 12 }}>
+                            <Text style={{ textAlign: 'center', color: 'gray' }}>Ban da co tai khoan? Sign Up</Text>
                         </Pressable>
                     </View>
                 </View>
