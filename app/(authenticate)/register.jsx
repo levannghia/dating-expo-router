@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, Platform, StatusBar, TextInput, Pressable } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, Platform, StatusBar, TextInput, Pressable, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 import { Link, useRouter } from 'expo-router';
+import axios from 'axios';
 
 const currentBarHeight = StatusBar.currentHeight
 
@@ -10,6 +11,34 @@ const register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
+
+    const handleRegister = () => {
+        const user = {
+            name: name,
+            email: email,
+            password: password,
+        }
+
+        axios.post('http://localhost:3000/register', user)
+            .then((response) => {
+                console.log(response);
+                Alert.alert(
+                    "Registration successful",
+                    "You have been registered Successfully"
+                );
+
+                setName("");
+                setEmail("");
+                setPassword("");
+            })
+            .catch((error) => {
+                Alert.alert(
+                    "Registration Error",
+                    "An error occurred while registering"
+                );
+                console.log("registration failed", error);
+            })
+    }
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff', alignItems: 'center' }}>
@@ -67,7 +96,7 @@ const register = () => {
                             backgroundColor: "#FFC0CB"
                         }}
                     >
-                        <Ionicons style={{ marginLeft: 8 }} name="person" size={24} color="white" />
+                        <Ionicons style={{ marginLeft: 8 }} name="person-sharp" size={24} color="white" />
                         <TextInput
                             value={name}
                             onChangeText={setName}
@@ -131,6 +160,7 @@ const register = () => {
 
                     <View style={{ marginTop: 30 }}>
                         <Pressable
+                            onPress={handleRegister}
                             style={{
                                 width: "60%",
                                 backgroundColor: '#FFC0CB',
@@ -140,7 +170,7 @@ const register = () => {
                                 padding: 15
                             }}
                         >
-                            <Text style={{ fontWeight: 'bold', fontSize: 16, color: 'white', textAlign: 'center' }}>Login</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 16, color: 'white', textAlign: 'center' }}>Register</Text>
                         </Pressable>
 
                         <Pressable onPress={() => router.replace("/login")} style={{ marginTop: 12 }}>
