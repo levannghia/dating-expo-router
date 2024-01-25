@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, Platform, StatusBar, TextInput, Pressable } from 'react-native'
 import React, { useState } from 'react'
-import { MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 import { Link, useRouter } from 'expo-router';
 
 const currentBarHeight = StatusBar.currentHeight
@@ -67,7 +67,7 @@ const register = () => {
                             backgroundColor: "#FFC0CB"
                         }}
                     >
-                        <MaterialIcons style={{ marginLeft: 8 }} name="email" size={24} color="white" />
+                        <Ionicons style={{ marginLeft: 8 }} name="person" size={24} color="white" />
                         <TextInput
                             value={name}
                             onChangeText={setName}
